@@ -1,14 +1,14 @@
 import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
 import { Test, TestingModule } from '@nestjs/testing';
-import {Worker} from 'bullmq'
+import { Worker } from 'bullmq';
 import { BullExplorer } from '../bull.explorer';
 import { BullModule } from '../bull.module';
 import { getQueueToken } from '../utils';
 
 jest.mock('bullmq', () => ({
   ...jest.requireActual('bullmq'),
-  Worker: jest.fn()
-}))
+  Worker: jest.fn(),
+}));
 
 describe('BullExplorer', () => {
   let bullExplorer: BullExplorer;
@@ -28,8 +28,8 @@ describe('BullExplorer', () => {
   });
 
   afterEach(() => {
-    (Worker as unknown as jest.Mock).mockClear();
-  })
+    ((Worker as unknown) as jest.Mock).mockClear();
+  });
 
   describe('handleProcessor', () => {
     it('should create a Worker', () => {
@@ -50,7 +50,7 @@ describe('BullExplorer', () => {
         false,
         opts,
       );
-      expect(Worker).toHaveBeenCalledWith('test', expect.any(Function), opts)
+      expect(Worker).toHaveBeenCalledWith('test', expect.any(Function), opts);
     });
     it('should set concurrency on a Worker with a value of 0', () => {
       const instance = { handler: jest.fn() };
@@ -64,7 +64,7 @@ describe('BullExplorer', () => {
         false,
         opts,
       );
-      expect(Worker).toHaveBeenCalledWith('test', expect.any(Function), opts)
+      expect(Worker).toHaveBeenCalledWith('test', expect.any(Function), opts);
     });
   });
 
@@ -74,13 +74,7 @@ describe('BullExplorer', () => {
       const queue = { on: jest.fn() } as any;
       const opts = { eventName: 'test' } as any;
       const wrapper = new InstanceWrapper();
-      bullExplorer.handleListener(
-        instance,
-        'handler',
-        wrapper,
-        queue,
-        opts,
-      );
+      bullExplorer.handleListener(instance, 'handler', wrapper, queue, opts);
       expect(queue.on).toHaveBeenCalledWith(
         opts.eventName,
         expect.any(Function),

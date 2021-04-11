@@ -56,7 +56,11 @@ function buildQueue(option: BullModuleOptions): Queue {
   ((queue as unknown) as OnApplicationShutdown).onApplicationShutdown = function (
     this: Queue,
   ) {
-    return Promise.all([...workers.map((w) => w.close()), this.close(), scheduler.close()]);
+    return Promise.all([
+      ...workers.map((w) => w.close()),
+      this.close(),
+      scheduler.close(),
+    ]);
   };
   return queue;
 }
