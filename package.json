@@ -1,14 +1,15 @@
 {
   "name": "@nestjs/bull",
-  "version": "0.3.1",
+  "private": true,
+  "version": "0.3.1+RC1",
   "description": "Nest - modern, fast, powerful node.js web framework (@bull)",
   "homepage": "https://github.com/nestjs/bull",
   "bugs": {
-    "url": "https://github.com/nestjs/bull/issues"
+    "url": "https://github.com/sambacha/bull/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nestjs/bull.git"
+    "url": "git+https://github.com/sambacha/bull.git"
   },
   "license": "MIT",
   "contributors": [
@@ -83,6 +84,7 @@
     "@nestjs/core": "^6.10.11 || ^7.0.0"
   },
   "dependencies": {
-    "bullmq": "^1.14.7"
+    "bullmq": "^1.16.1",
+    "bullmq-utils": "1.1.0"
   }
 }
